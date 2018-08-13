@@ -79,7 +79,7 @@ class PyDictionary(object):
                     return {term: li}
                 return li
             except:
-                print("{0} has no Synonyms in the API".format(term))
+                return None
 
     def __repr__(self):
         return "<PyDictionary Object with {0} words>".format(len(self.args))
@@ -110,10 +110,10 @@ class PyDictionary(object):
                     return {word: li}
                 return li
             except:
-                print("{0} has no Antonyms in the API".format(word))
+                return None
 
     @staticmethod
-    def meaning(term, disable_errors=False):
+    def meaning(term):
         if len(term.split()) > 1:
             print("Error: A Term must be only a single word")
         else:
@@ -136,8 +136,7 @@ class PyDictionary(object):
                     out[name] = meanings
                 return out
             except Exception as e:
-                if disable_errors == False:
-                    print("Error: The Following Error occured: %s" % e)
+                print("Error: The Following Error occured: %s" % e)
 
     @staticmethod
     def googlemeaning(term, formatted=True):
@@ -158,7 +157,7 @@ class PyDictionary(object):
                     return meaning
                 return formated
             except Exception as e:
-                print("Error: The Word given is not a valid English Word")
+                return None
 
 if __name__ == '__main__':
     d = PyDictionary('honest','happy')
